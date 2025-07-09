@@ -117,3 +117,78 @@ def logout():
     response.set_cookie('consultantId', '', max_age=0, samesite=None)
     
     return response, 200
+
+@auth_bp.route('/register/consultant', methods=['POST'])
+def register_consultant():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+    name = data.get('name')
+
+    if any([
+        Admin.query.filter_by(email=email).first(),
+        User.query.filter_by(email=email).first(),
+        Consultant.query.filter_by(email=email).first()
+    ]):
+        return jsonify({'error': 'Email already exists'}), 400
+
+    # Get employment type with default to part-time
+    employment_type = data.get('employment_type', 'part-time')
+    if employment_type not in ['part-time', 'full-time']:
+        return jsonify({'error': 'Invalid employment type. Must be "part-time" or "full-time"'}), 400
+
+    consultant = Consultant(
+        email=email,
+        name=name,
+        phone=data.get('phone'),
+        address=data.get('address'),
+        shift=data.get('shift'),
+        presence=data.get('presence'),
+        employment_type=employment_type,
+        hourly_rate=data.get('hourly_rate', 5000)  # Default rate
+    )
+
+    consultant.set_password(password)
+    db.session.add(consultant)
+    db.session.commit()
+
+    # Generate time slots for the new consultant (next 4 weeks)
+    slots_created = generate_consultant_time_slots(consultant_id=consultant.id, num_weeks=4)
+
+    response_data = {
+        'message': 'Consultant registered successfully',
+        'consultant_id': consultant.id,
+        'slots_created': slots_created
+    }
+
+    return jsonify(response_data), 201
+
+@auth_bp.route('/register/admin', methods=['POST'])
+def register_admin():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+    name = data.get('name')
+
+    if any([
+        Admin.query.filter_by(email=email).first(),
+        User.query.filter_by(email=email).first(),
+        Consultant.query.filter_by(email=email).first()
+    ]):
+        return jsonify({'error': 'Email already exists'}), 400
+
+    admin = Admin(
+        email=email,
+        name=name
+    )
+
+    admin.set_password(password)
+    db.session.add(admin)
+    db.session.commit()
+
+    response_data = {
+        'message': 'Admin registered successfully',
+        'admin_id': admin.id
+    }
+
+    return jsonify(response_data), 201
