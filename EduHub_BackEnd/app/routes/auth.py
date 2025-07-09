@@ -145,7 +145,6 @@ def register_consultant():
         shift=data.get('shift'),
         presence=data.get('presence'),
         employment_type=employment_type,
-        hourly_rate=data.get('hourly_rate', 5000)  # Default rate
     )
 
     consultant.set_password(password)
