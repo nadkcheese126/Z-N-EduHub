@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Clock, User, Video, Phone, MessageSquare, Filter, Search, Bell, LogOut, ChevronLeft, ChevronRight, MapPin, Mail, BookOpen, Star } from 'lucide-react';
+import { Calendar, Clock, User, Video, Phone, MessageSquare, Filter, Search, Bell, LogOut, ChevronLeft, ChevronRight, MapPin, Mail, BookOpen } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import eduHubLogo from '../Images/eduhub_logo.jpeg';
@@ -19,14 +19,12 @@ export default function ConsultantDashboard() {
     email: '',
     specialization: '',
     experience: '',
-    rating: 0,
     totalSessions: 0
   });
   const [stats, setStats] = useState({
     todaySessions: 0,
     weekSessions: 0,
-    totalSessions: 0,
-    rating: 0
+    totalSessions: 0
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -108,22 +106,39 @@ export default function ConsultantDashboard() {
     } catch (err) {
       console.error('Error fetching sessions:', err);
       if (err.response && err.response.status === 401) {
-        navigate('/consultant-login');
+        navigate('/consultantlogin');
       }
       setLoading(false);
       setError('Failed to load sessions.');
     }
   };
 
-  // Setting default stats since we're not fetching stats in this simplified version
+  // Calculate stats based on sessions data
   useEffect(() => {
+    if (sessions.length === 0) {
+      setStats({
+        todaySessions: 0,
+        weekSessions: 0,
+        totalSessions: 0
+      });
+      return;
+    }
+
+    const today = new Date().toISOString().split('T')[0];
+    const weekAgo = new Date();
+    weekAgo.setDate(weekAgo.getDate() - 7);
+    const weekAgoStr = weekAgo.toISOString().split('T')[0];
+
+    const todayCount = sessions.filter(session => session.date === today).length;
+    const weekCount = sessions.filter(session => session.date >= weekAgoStr).length;
+    const totalCount = sessions.length;
+
     setStats({
-      todaySessions: 0,
-      weekSessions: 0,
-      totalSessions: 0,
-      rating: 0
+      todaySessions: todayCount,
+      weekSessions: weekCount,
+      totalSessions: totalCount
     });
-  }, []);
+  }, [sessions]);
 
   useEffect(() => {
     // Check for consultantId
@@ -219,7 +234,7 @@ export default function ConsultantDashboard() {
     localStorage.removeItem('user_type');
     
     // Navigate back to login page
-    navigate('/consultant-login');
+    navigate('/consultantlogin');
   };
 
   // Add function to handle session status updates
@@ -313,7 +328,7 @@ export default function ConsultantDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
           {/* Stats Cards */}
-          <div className="lg:col-span-4 grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="lg:col-span-4 grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
@@ -346,18 +361,6 @@ export default function ConsultantDashboard() {
                 </div>
                 <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                   <User className="w-5 h-5 text-purple-600" />
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Rating</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.rating}</p>
-                </div>
-                <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                  <Star className="w-5 h-5 text-yellow-600" />
                 </div>
               </div>
             </div>

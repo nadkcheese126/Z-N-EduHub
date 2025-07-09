@@ -16,7 +16,6 @@ export default function AdminDashboard() {
   
   // Real data states
   const [dashboardStats, setDashboardStats] = useState([]);
-  const [revenueData, setRevenueData] = useState({ daily: [], monthly: [] });
   const [consultantData, setConsultantData] = useState({ top_consultants: [], utilization: [] });
   const [bookingData, setBookingData] = useState({ daily_trends: [], status_distribution: [], popular_time_slots: [] });
   const [userData, setUserData] = useState({ registration_trends: [], degree_distribution: [], mode_distribution: [], popular_areas: [] });
@@ -44,21 +43,19 @@ export default function AdminDashboard() {
       };
 
       // Fetch all analytics data
-      const [overviewRes, revenueRes, consultantRes, bookingRes, userRes, bookingsRes] = await Promise.all([
+      const [overviewRes, consultantRes, bookingRes, userRes, bookingsRes] = await Promise.all([
         fetch('http://127.0.0.1:5000/api/admin/analytics/overview', { headers }),
-        fetch('http://127.0.0.1:5000/api/admin/analytics/revenue', { headers }),
         fetch('http://127.0.0.1:5000/api/admin/analytics/consultants', { headers }),
         fetch('http://127.0.0.1:5000/api/admin/analytics/bookings', { headers }),
         fetch('http://127.0.0.1:5000/api/admin/analytics/users', { headers }),
         fetch('http://127.0.0.1:5000/api/admin/getBookings', { headers })
       ]);
 
-      if (!overviewRes.ok || !revenueRes.ok || !consultantRes.ok || !bookingRes.ok || !userRes.ok || !bookingsRes.ok) {
+      if (!overviewRes.ok || !consultantRes.ok || !bookingRes.ok || !userRes.ok || !bookingsRes.ok) {
         throw new Error('Failed to fetch dashboard data');
       }
 
       const overviewData = await overviewRes.json();
-      const revenueAnalytics = await revenueRes.json();
       const consultantAnalytics = await consultantRes.json();
       const bookingAnalytics = await bookingRes.json();
       const userAnalytics = await userRes.json();
@@ -97,7 +94,6 @@ export default function AdminDashboard() {
         }
       ]);
 
-      setRevenueData(revenueAnalytics.revenue_analytics);
       setConsultantData(consultantAnalytics.consultant_analytics);
       setBookingData(bookingAnalytics.booking_analytics);
       setUserData(userAnalytics.user_analytics);
