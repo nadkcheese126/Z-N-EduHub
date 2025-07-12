@@ -57,7 +57,7 @@ def generate_consultant_time_slots(consultant_id=None, num_weeks=1, start_date=N
                 continue
             
             for start_time, end_time in daily_slots:
-                # Check if this slot already exists
+                # Check if this slot already exists & pevents duplicates
                 existing_slot = ConsultantTimeSlot.query.filter_by(
                     consultant_id=consultant.id,
                     date=current_date,

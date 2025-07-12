@@ -94,7 +94,7 @@ export default function ConsultantLogin() {
           <div className="text-center space-y-4">
             <img src={eduHubLogo} alt="EduHub Logo" className="inline-block h-24 w-auto rounded-lg shadow-md mb-4" />
             <h1 className="text-4xl font-bold text-gray-900">
-              EduConsult <span className="text-blue-600">Pro</span>
+              Z&N  <span className="text-blue-600">EduHub</span>
             </h1>
             <p className="text-xl text-gray-600">
               Empowering Education Through Expert Guidance
@@ -195,19 +195,7 @@ export default function ConsultantLogin() {
                 )}
               </div>
 
-              <div className="flex items-center justify-between">
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
-                <a href="#" className="text-sm text-blue-600 hover:text-blue-500 font-medium">
-                  Forgot password?
-                </a>
-              </div>
-
+           
               <button
                 onClick={handleSubmit}
                 className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer text-center"
@@ -227,7 +215,7 @@ export default function ConsultantLogin() {
               <p className="text-sm text-gray-600">
                 Need help? Contact{' '}
                 <a href="#" className="text-blue-600 hover:text-blue-500 font-medium">
-                  support@educonsultpro.com
+                  zneduhub@gmail.com
                 </a>
               </p>
             </div>

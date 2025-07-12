@@ -295,7 +295,7 @@ export default function ConsultantDashboard() {
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
                 <img src={eduHubLogo} alt="EduHub Logo" className="w-8 h-8 object-contain" />
-                <span className="text-xl font-bold text-gray-900">EduHub</span>
+                <span className="text-xl font-bold text-gray-900">Z&N EduHub</span>
               </div>
               <div className="hidden md:block h-6 w-px bg-gray-300"></div>
               <div className="hidden md:block">
@@ -309,7 +309,7 @@ export default function ConsultantDashboard() {
               </button>
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">AR</span>
+                  <span className="text-white text-sm font-medium">C</span>
                 </div>
                 <div className="hidden md:block">
                   <p className="text-sm font-medium text-gray-900">{consultantInfo.name}</p>

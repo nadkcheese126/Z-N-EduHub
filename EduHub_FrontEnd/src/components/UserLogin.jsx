@@ -19,6 +19,7 @@ const AuthPage = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    name: '',
     phone: '',
     address: '',
     areas_of_interest: '',
@@ -109,6 +110,7 @@ const AuthPage = () => {
     if (registerData.password !== registerData.confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
+    if (!registerData.name) newErrors.name = 'name is required';
     if (!registerData.phone) newErrors.phone = 'Phone number is required';
     if (!registerData.address) newErrors.address = 'Address is required';
     if (!registerData.areas_of_interest) newErrors.areas_of_interest = 'Areas of interest is required';
@@ -122,6 +124,7 @@ const AuthPage = () => {
         const response = await axios.post('http://127.0.0.1:5000/api/auth/register/user', {
           email: registerData.email,
           password: registerData.password,
+          name: registerData.name,
           phone: registerData.phone,
           address: registerData.address,
           areas_of_interest: registerData.areas_of_interest,
@@ -180,12 +183,12 @@ const AuthPage = () => {
             <img src={eduHubLogo} alt="EduHub Logo" className="h-20 w-auto rounded-lg shadow-md" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            EduConsult Pro
+            Z&N EduHub
           </h2>
           <p className="text-gray-600">
             Your pathway to educational excellence
           </p>
-        </div>
+        </div> 
 
         {/* Form Container */}
         <div className="bg-white rounded-xl shadow-xl p-8">
@@ -269,15 +272,7 @@ const AuthPage = () => {
                 {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
               </div>
 
-              <div className="flex items-center justify-between">
-                <label className="flex items-center">
-                  <input type="checkbox" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-                  <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
-                <a href="#" className="text-sm text-indigo-600 hover:text-indigo-500">
-                  Forgot password?
-                </a>
-              </div>
+             
 
               <button
                 onClick={handleLoginSubmit}
@@ -365,6 +360,30 @@ const AuthPage = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Name
+                </label>
+                <div className="relative">
+                  <name className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <input
+                    type="text"
+                    name="name"
+                    value={registerData.name}
+                    onChange={handleRegisterChange}
+                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent ${
+                      errors.name ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    placeholder="Name"
+                  />
+                </div>
+                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+              </div>
+
+
+
+
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Phone Number
                 </label>
                 <div className="relative">
@@ -439,11 +458,11 @@ const AuthPage = () => {
                   }`}
                 >
                   <option value="">Select degree level</option>
-                  <option value="High School">High School</option>
-                  <option value="Associate's">Associate's</option>
+                 
+                  <option value="Diploma">Diploma</option>
                   <option value="Bachelor's">Bachelor's</option>
                   <option value="Master's">Master's</option>
-                  <option value="PhD">PhD</option>
+            
                 </select>
                 {errors.degree_level && <p className="text-red-500 text-xs mt-1">{errors.degree_level}</p>}
               </div>
@@ -490,14 +509,16 @@ const AuthPage = () => {
               </button>
             </div>
           )}
+          
         </div>
+
 
         {/* Footer */}
         <div className="text-center text-sm text-gray-600">
           <p>
             Need help?{' '}
             <a href="#" className="text-indigo-600 hover:text-indigo-500">
-              Contact Support
+              Contact Support via zneduhub@gmail.com
             </a>
           </p>
         </div>

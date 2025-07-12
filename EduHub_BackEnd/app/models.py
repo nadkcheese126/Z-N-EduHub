@@ -76,13 +76,13 @@ class Program(db.Model):
     program_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     duration = db.Column(db.String(50), nullable=True) # Storing as string as it contains "years" or "year"
-    uni_id = db.Column(db.Integer, nullable=True)
+    uni_id = db.Column(db.Integer, nullable=False)
     degree_level = db.Column(db.String(100), nullable=True)
     mode = db.Column(db.String(50), nullable=True)
     fee = db.Column(db.Float, nullable=True) # Storing cleaned fee as a float
     requirements = db.Column(db.Text, nullable=True)
     scholarships = db.Column(db.String(255), nullable=True)
-    area_of_study = db.Column(db.String(255), nullable=True)
+    area_of_study = db.Column(db.String(255), nullable=False)
     date_added = db.Column(db.DateTime, server_default=db.func.now())
     def __repr__(self):
         return f"Program('{self.name}', '{self.degree_level}', '{self.area_of_study}')"

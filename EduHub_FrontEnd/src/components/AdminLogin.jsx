@@ -116,7 +116,7 @@ export default function AdminLogin() {
                 <img src={eduHubLogo} alt="EduHub Logo" className="w-12 h-12 object-contain" />
               </div>
               <h1 className="ml-3 text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                EduConsult Pro
+                Z&N EduHub 
               </h1>
             </div>
             <p className="text-gray-600 text-lg mb-8">
@@ -129,7 +129,7 @@ export default function AdminLogin() {
             <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-white/20">
               <BookOpen className="w-8 h-8 text-blue-600 mb-3" />
               <h3 className="font-semibold text-gray-800 mb-2">Expert Guidance</h3>
-              <p className="text-sm text-gray-600">Personalized counseling for academic success</p>
+              <p className="text-sm text-gray-600">Personalized counseling by professionals for academic success</p>
             </div>
             <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-white/20">
               <Users className="w-8 h-8 text-purple-600 mb-3" />
@@ -139,12 +139,12 @@ export default function AdminLogin() {
             <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-white/20">
               <TrendingUp className="w-8 h-8 text-indigo-600 mb-3" />
               <h3 className="font-semibold text-gray-800 mb-2">Growth Tracking</h3>
-              <p className="text-sm text-gray-600">Monitor progress and achievements</p>
+              <p className="text-sm text-gray-600">Guidance as students grow in their academic and professional journeys</p>
             </div>
             <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-white/20">
               <GraduationCap className="w-8 h-8 text-green-600 mb-3" />
               <h3 className="font-semibold text-gray-800 mb-2">Career Planning</h3>
-              <p className="text-sm text-gray-600">Strategic academic pathway design</p>
+              <p className="text-sm text-gray-600">Strategically bridging career goals with the path of qualifications</p>
             </div>
           </div>
         </div>
@@ -240,25 +240,7 @@ export default function AdminLogin() {
                 )}
               </div>
 
-              {/* Remember Me & Forgot Password */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="remember"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label htmlFor="remember" className="ml-2 block text-sm text-gray-700">
-                    Remember me
-                  </label>
-                </div>
-                <button
-                  type="button"
-                  className="text-sm text-blue-600 hover:text-blue-800 font-medium"
-                >
-                  Forgot password?
-                </button>
-              </div>
+             
 
               {/* Submit Button */}
               <button
@@ -282,7 +264,7 @@ export default function AdminLogin() {
               <p className="text-sm text-gray-600">
                 Need help? Contact{' '}
                 <a href="mailto:support@educonsult.com" className="text-blue-600 hover:text-blue-800 font-medium">
-                  support@educonsult.com
+                  zneduhub@gmail.com
                 </a>
               </p>
             </div>

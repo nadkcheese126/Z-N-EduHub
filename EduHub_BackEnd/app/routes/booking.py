@@ -105,7 +105,7 @@ def create_booking():
         'time': f"{time_slot.start_time} - {time_slot.end_time}",
         'status': 'Pending',
         'requires_payment': True,
-        'amount': getattr(consultant, 'hourly_rate', None) or 5000
+        'amount': getattr(consultant, 'hourly_rate', None) or 2000
     }), 201
 
 
@@ -197,13 +197,13 @@ def process_payment():
     elif card_number == '4000000000000119':
         return jsonify({'error': 'Payment declined - Invalid card'}), 400
     elif len(card_number) < 13 or len(card_number) > 19:
-        return jsonify({'error': 'Invalid card number length'}), 400
+        return jsonify({'error': 'Invalid card number '}), 400
     elif len(cvv) != 3:
         return jsonify({'error': 'Invalid CVV'}), 400
 
     # Get consultant hourly rate for amount calculation
     consultant = Consultant.query.get(booking.consultant_id)
-    amount = getattr(consultant, 'hourly_rate', None) or 5000  # Default LKR 5000
+    amount = getattr(consultant, 'hourly_rate', None) or 2000  # Default LKR 2000
 
     # Generate fake transaction ID
     transaction_id = 'TXN' + ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))

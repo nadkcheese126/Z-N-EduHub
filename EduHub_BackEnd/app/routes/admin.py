@@ -121,7 +121,7 @@ def get_consultant_analytics():
             Consultant.email,
             func.count(Booking.booking_id).label('total_bookings'),
             func.sum(func.case((Booking.status == 'Confirmed', 1), else_=0)).label('confirmed_bookings'),
-            (func.sum(func.case((Booking.status == 'Confirmed', 1), else_=0)) * 5000.0).label('revenue_generated')
+            (func.sum(func.case((Booking.status == 'Confirmed', 1), else_=0)) * 2000.0).label('revenue_generated')
         ).outerjoin(Booking, Consultant.id == Booking.consultant_id).group_by(
             Consultant.id, Consultant.name, Consultant.email
         ).order_by(func.count(Booking.booking_id).desc()).all()

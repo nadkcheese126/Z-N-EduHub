@@ -205,7 +205,7 @@ export default function AdminDashboard() {
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-xl mr-3">
               <GraduationCap className="w-6 h-6 text-white" />
             </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">EduHub Pro - Admin Dashboard</h1>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Z&N EduHub - Admin Dashboard</h1>
           </div>
           
           <div className="flex items-center space-x-4">
@@ -232,7 +232,7 @@ export default function AdminDashboard() {
             <div className="relative z-10">
               <h2 className="text-3xl font-bold mb-3 flex items-center">
                 <span className="mr-3">👋</span>
-                Welcome to Admin Dashboard
+                Welcome to the Admin Dashboard
               </h2>
               <p className="text-blue-100 text-lg opacity-90">Monitor your educational consultancy performance and analytics in real-time</p>
             </div>

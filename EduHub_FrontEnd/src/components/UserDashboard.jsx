@@ -682,7 +682,7 @@ const EducationConsultancyApp = () => {
                     <div>
                       <h3 className="text-xl font-bold text-gray-800">{selectedConsultant.name}</h3>
                       <p className="text-indigo-600 font-medium">{selectedConsultant.title || "Education Consultant"}</p>
-                      <p className="text-gray-600">{selectedConsultant.hourly_rate ? `LKR ${selectedConsultant.hourly_rate}` : "LKR 5000"}/hour</p>
+                      <p className="text-gray-600">{selectedConsultant.hourly_rate ? `LKR ${selectedConsultant.hourly_rate}` : "LKR 2000"}/hour</p>
                     </div>
                   </div>
                 </div>
@@ -859,7 +859,7 @@ const EducationConsultancyApp = () => {
                 <GraduationCap className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">EduConsult Pro</h1>
+                <h1 className="text-2xl font-bold text-gray-900">Z&N EduHub</h1>
                 <p className="text-gray-600">Your pathway to academic success</p>
               </div>
             </div>
@@ -1008,7 +1008,7 @@ const EducationConsultancyApp = () => {
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-gray-900">{consultant.hourly_rate ? `LKR ${consultant.hourly_rate}` : "LKR 5000"}</p>
+                        <p className="text-2xl font-bold text-gray-900">{consultant.hourly_rate ? `LKR ${consultant.hourly_rate}` : "LKR 2000"}</p>
                         <p className="text-sm text-gray-600">per hour</p>
                       </div>
                     </div>
